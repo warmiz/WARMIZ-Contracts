@@ -1,0 +1,8 @@
+/build
+node_modules
+.vscode
+.secret.rinkeby
+.secret.mainnet
+.secret
+yarn.lock
+package-lock.json
