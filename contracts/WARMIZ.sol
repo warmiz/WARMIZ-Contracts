@@ -233,7 +233,7 @@ contract WARMIZ is BEP20 {
     }
 
     function recoverBEP20(IBEP20 token, address recipient) external onlyOwner {
-        require(address(token) != address(this), "Can't withdraw DBQ");
+        require(address(token) != address(this), "Can't withdraw WARMIZ");
         uint256 amount = token.balanceOf(address(this));
         token.transfer(recipient, amount);
         emit RecoverBEP20(address(token), recipient, amount);

@@ -9,7 +9,7 @@ contract BEP20 is IBEP20, Ownable {
     mapping (address => uint256) private _balances;
     mapping (address => mapping (address => uint256)) private _allowances;
 
-    string private constant NAME = "WARMIZ Token";
+    string private constant NAME = "WARMIZ";
     string private constant SYMBOL = "WARMIZ";
     uint8 private constant DECIMALS = 18;
     uint256 private constant TOTAL_SUPPLY = 10**9 * 10**DECIMALS;
