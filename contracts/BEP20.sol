@@ -12,7 +12,7 @@ contract BEP20 is IBEP20, Ownable {
     string private constant NAME = "WARMIZ";
     string private constant SYMBOL = "WARMIZ";
     uint8 private constant DECIMALS = 18;
-    uint256 private constant TOTAL_SUPPLY = 10**9 * 10**DECIMALS;
+    uint256 private TOTAL_SUPPLY = 10**9 * 10**DECIMALS;
 
     constructor(address owner, address recipient) Ownable(owner) {
         require(recipient != address(0), "Transfer to zero address");
@@ -36,7 +36,7 @@ contract BEP20 is IBEP20, Ownable {
         return NAME;
     }
 
-    function totalSupply() public pure returns (uint256) {
+    function totalSupply() public view returns (uint256) {
         return TOTAL_SUPPLY;
     }
 
@@ -46,6 +46,11 @@ contract BEP20 is IBEP20, Ownable {
 
     function transfer(address recipient, uint256 amount) external returns (bool) {
         _transfer(msg.sender, recipient, amount);
+        return true;
+    }
+
+    function burn(uint256 amount) external returns (bool) {
+        _burn(msg.sender, amount);
         return true;
     }
 
@@ -107,5 +112,18 @@ contract BEP20 is IBEP20, Ownable {
 
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
+    }
+
+    function _burn(address account, uint256 amount) internal {
+        require(account != address(0), "BEP20: burn from the zero address");
+
+        uint256 accountBalance = _balances[account];
+        require(accountBalance >= amount, "BEP20: burn amount exceeds balance");
+        unchecked {
+            _balances[account] = accountBalance - amount;
+        }
+        TOTAL_SUPPLY -= amount;
+
+        emit Transfer(account, address(0), amount);
     }
 }

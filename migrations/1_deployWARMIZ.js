@@ -105,8 +105,8 @@ module.exports = function (deployer, network, accounts) {
     // Deploy MACAddon Contract
     const WARMIZContract = await deployer.deploy(
       WARMIZ,
-      "0xe3a46b92bE1D3C82Fa97e280Fa6dF00eB43D1Eb1", 
-      "0xe3a46b92bE1D3C82Fa97e280Fa6dF00eB43D1Eb1",
+      "0x334C8D25Be4D146983d56E6C5fe456c2197c9824", 
+      "0x334C8D25Be4D146983d56E6C5fe456c2197c9824",
       opts
     );
 
